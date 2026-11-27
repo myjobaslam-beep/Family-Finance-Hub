@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff5722">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="FamilyBank">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="icon" type="image/png" href="icon-192.png">
   <title>Family Finance Hub — SeaBank & Bibit Edition</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
@@ -140,29 +147,24 @@
           </div>
         </div>
 
-        <!-- Quick Top Tools: Back to Welcome, Refresh, Dark Mode, Sheets (Mobile), Profile, Options -->
-        <div class="flex items-center gap-1 sm:gap-2 shrink-0">
+        <!-- Quick Top Tools: Ultra-Clean on Mobile (3 Controls), Full on Desktop -->
+        <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
 
-          <!-- Tool 0a: Kembali ke Halaman Depan (Welcome Screen) -->
-          <button id="btnBackToWelcome" type="button" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-xl text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/60 hover:bg-orange-100 dark:hover:bg-orange-900/60 transition-colors flex items-center justify-center gap-1 shadow-xs text-xs font-semibold" title="Kembali ke Halaman Depan">
+          <!-- Tool 0a: Kembali ke Halaman Depan (Desktop top bar; mobile tap logo or Options) -->
+          <button id="btnBackToWelcome" type="button" class="hidden sm:flex px-2.5 py-1.5 rounded-xl text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/60 hover:bg-orange-100 dark:hover:bg-orange-900/60 transition-colors items-center justify-center gap-1 shadow-xs text-xs font-semibold" title="Kembali ke Halaman Depan">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
             <span class="hidden md:inline">Depan</span>
           </button>
 
           <!-- Tool 0b: Muat Ulang / Refresh Data -->
-          <button id="btnRefreshData" type="button" class="p-1.5 sm:p-2 rounded-xl text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center justify-center shadow-xs" title="Muat Ulang Data Dashboard">
+          <button id="btnRefreshData" type="button" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center justify-center shadow-xs" title="Muat Ulang Data Dashboard">
             <svg id="iconRefreshSpin" class="w-4 h-4 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
           </button>
 
-          <!-- Tool 1: Gelap / Terang (Dark/Light Toggle) -->
-          <button id="btnToggleTheme" class="p-1.5 sm:p-2 rounded-xl text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center justify-center shadow-xs" title="Ganti Tema Gelap / Terang">
+          <!-- Tool 1: Gelap / Terang (Desktop top bar; mobile in Options) -->
+          <button id="btnToggleTheme" class="hidden sm:flex p-2 rounded-xl text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors items-center justify-center shadow-xs" title="Ganti Tema Gelap / Terang">
             <svg id="iconSun" class="w-4 h-4 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
             <svg id="iconMoon" class="w-4 h-4 block dark:hidden text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-          </button>
-
-          <!-- Mobile Shortcut to Sheets / Excel Report -->
-          <button id="btnMobileOpenSheets" type="button" class="sm:hidden p-1.5 rounded-xl text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 transition-colors flex items-center justify-center shadow-xs" title="Laporan Excel & Skema Sheets">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
           </button>
 
           <!-- Cloud Status Indicator -->
@@ -173,14 +175,14 @@
 
           <!-- Tool 2: Selector Profil Aktif -->
           <div class="relative">
-            <select id="selectProfile" class="text-[11px] sm:text-xs font-semibold bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-1.5 sm:px-2 py-1.5 text-slate-700 dark:text-slate-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 max-w-[92px] sm:max-w-none">
+            <select id="selectProfile" class="text-xs font-semibold bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-2 py-1.5 text-slate-700 dark:text-slate-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 max-w-[104px] sm:max-w-none">
               <option value="Suami">👨 Aslam (Suami)</option>
               <option value="Istri">👩 Anis (Istri)</option>
             </select>
           </div>
 
           <!-- Tool 3: Options / Settings Button -->
-          <button id="btnOpenOptionsScreen" class="p-1.5 sm:p-2 rounded-xl text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center justify-center shadow-xs" title="Menu Opsi & Pengaturan">
+          <button id="btnOpenOptionsScreen" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center justify-center shadow-xs" title="Menu Opsi & Pengaturan">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
           </button>
 
@@ -1104,7 +1106,19 @@
           <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Pengaturan preferensi aplikasi dan pencadangan data keluarga.</p>
 
           <div class="space-y-4 text-xs">
-            
+
+            <!-- Pintasan Cepat Mobile: Laporan Excel & Halaman Depan -->
+            <div class="grid grid-cols-2 gap-2.5 sm:hidden">
+              <button id="btnMobileOpenSheets" type="button" class="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 font-bold flex flex-col items-center justify-center gap-1 shadow-xs">
+                <span class="text-lg">📊</span>
+                <span>Laporan Excel & Sheets</span>
+              </button>
+              <button id="btnMobileBackWelcome" type="button" class="p-3 rounded-xl bg-orange-50 dark:bg-orange-950/60 border border-orange-200 dark:border-orange-800 text-orange-700 dark:text-orange-300 font-bold flex flex-col items-center justify-center gap-1 shadow-xs">
+                <span class="text-lg">💍</span>
+                <span>Halaman Depan</span>
+              </button>
+            </div>
+
                     <!-- KONEKSI CLOUD REAL-TIME (SUPABASE SYNC) -->
         <div class="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 shadow-xs">
           <div class="flex items-center justify-between mb-2">
@@ -1652,6 +1666,10 @@ create policy "Akses Keluarga Trx" on transactions for all using (true) with che
     const btnMobileOpenSheets = document.getElementById('btnMobileOpenSheets');
     if (btnMobileOpenSheets) {
       btnMobileOpenSheets.addEventListener('click', () => switchScreen('screen-sheets'));
+    }
+    const btnMobileBackWelcome = document.getElementById('btnMobileBackWelcome');
+    if (btnMobileBackWelcome) {
+      btnMobileBackWelcome.addEventListener('click', () => openWelcomeScreen());
     }
 
     // In-Dashboard Screen Jump Links
@@ -3599,6 +3617,14 @@ create policy "Akses Keluarga Trx" on transactions for all using (true) with che
       }
       updateReportPreviewInfo();
     })();
+
+
+    // Register PWA Service Worker safely on HTTPS (GitHub Pages / Netlify)
+    if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
 
     // Initial Start
     if (state.theme) applyTheme(state.theme);
