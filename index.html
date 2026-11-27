@@ -50,7 +50,7 @@
     .dark .badge-date { background-color: #581c87; color: #e9d5ff; }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col pb-20 sm:pb-6">
+<body class="bg-slate-100 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col pb-24 sm:pb-8 overflow-x-hidden">
 
   <!-- ========================================== -->
   <!-- SCREEN 0: SCREEN AWAL / WELCOME LANDING    -->
@@ -124,43 +124,48 @@
   <!-- ========================================== -->
   <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30 shadow-xs">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2.5">
-      <div class="flex items-center justify-between gap-3">
+      <div class="flex items-center justify-between gap-2">
         
-        <!-- App Identity -->
-        <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-orange-600 text-white flex items-center justify-center font-bold text-base shadow-sm">
+        <!-- App Identity (Compact on Mobile, Full on Desktop) -->
+        <div class="flex items-center gap-2 min-w-0">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-orange-600 text-white flex items-center justify-center font-bold text-sm sm:text-base shadow-sm shrink-0">
             <span>🏠</span>
           </div>
-          <div>
+          <div class="min-w-0">
             <div class="flex items-center gap-1.5">
-              <h1 id="btnHeaderLogo" class="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-tight cursor-pointer hover:text-orange-600 dark:hover:text-orange-400 transition-colors" title="Buka Layar Awal Kenangan">FamilyBank Hub 💍</h1>
-              <span class="text-[9px] font-semibold bg-orange-100 dark:bg-orange-950/80 text-orange-700 dark:text-orange-300 px-1.5 py-0.5 rounded-full">Aslam & Anis</span>
+              <h1 id="btnHeaderLogo" class="text-xs sm:text-base font-bold text-slate-900 dark:text-white leading-tight cursor-pointer hover:text-orange-600 dark:hover:text-orange-400 transition-colors truncate" title="Buka Layar Awal Kenangan">FamilyBank 💍</h1>
+              <span class="hidden sm:inline-block text-[9px] font-semibold bg-orange-100 dark:bg-orange-950/80 text-orange-700 dark:text-orange-300 px-1.5 py-0.5 rounded-full shrink-0">Aslam & Anis</span>
             </div>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400">Pengelolaan Keuangan Privat Keluarga</p>
+            <p class="hidden sm:block text-[11px] text-slate-500 dark:text-slate-400">Pengelolaan Keuangan Privat Keluarga</p>
           </div>
         </div>
 
-        <!-- Quick Top Tools: Back to Welcome, Refresh, Dark Mode, Profile, Options -->
-        <div class="flex items-center gap-1.5 sm:gap-2">
+        <!-- Quick Top Tools: Back to Welcome, Refresh, Dark Mode, Sheets (Mobile), Profile, Options -->
+        <div class="flex items-center gap-1 sm:gap-2 shrink-0">
 
           <!-- Tool 0a: Kembali ke Halaman Depan (Welcome Screen) -->
-          <button id="btnBackToWelcome" type="button" class="p-2 sm:px-2.5 sm:py-1.5 rounded-xl text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/60 hover:bg-orange-100 dark:hover:bg-orange-900/60 transition-colors flex items-center justify-center gap-1 shadow-xs text-xs font-semibold" title="Kembali ke Halaman Depan">
+          <button id="btnBackToWelcome" type="button" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-xl text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/60 hover:bg-orange-100 dark:hover:bg-orange-900/60 transition-colors flex items-center justify-center gap-1 shadow-xs text-xs font-semibold" title="Kembali ke Halaman Depan">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
             <span class="hidden md:inline">Depan</span>
           </button>
 
-          <!-- Tool 0b: Muat Ulang / Refresh Data (Tanpa Kembali ke Screen Awal) -->
-          <button id="btnRefreshData" type="button" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center justify-center shadow-xs" title="Muat Ulang Data Dashboard">
+          <!-- Tool 0b: Muat Ulang / Refresh Data -->
+          <button id="btnRefreshData" type="button" class="p-1.5 sm:p-2 rounded-xl text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center justify-center shadow-xs" title="Muat Ulang Data Dashboard">
             <svg id="iconRefreshSpin" class="w-4 h-4 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
           </button>
 
           <!-- Tool 1: Gelap / Terang (Dark/Light Toggle) -->
-          <button id="btnToggleTheme" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center justify-center shadow-xs" title="Ganti Tema Gelap / Terang">
+          <button id="btnToggleTheme" class="p-1.5 sm:p-2 rounded-xl text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center justify-center shadow-xs" title="Ganti Tema Gelap / Terang">
             <svg id="iconSun" class="w-4 h-4 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
             <svg id="iconMoon" class="w-4 h-4 block dark:hidden text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
           </button>
 
-                    <!-- Cloud Status Indicator -->
+          <!-- Mobile Shortcut to Sheets / Excel Report -->
+          <button id="btnMobileOpenSheets" type="button" class="sm:hidden p-1.5 rounded-xl text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 transition-colors flex items-center justify-center shadow-xs" title="Laporan Excel & Skema Sheets">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          </button>
+
+          <!-- Cloud Status Indicator -->
           <div id="cloudStatusBadge" class="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-semibold px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
             <span id="cloudStatusDot" class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
             <span id="cloudStatusText">Lokal</span>
@@ -168,14 +173,14 @@
 
           <!-- Tool 2: Selector Profil Aktif -->
           <div class="relative">
-            <select id="selectProfile" class="text-xs font-semibold bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-2 py-1.5 text-slate-700 dark:text-slate-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500">
+            <select id="selectProfile" class="text-[11px] sm:text-xs font-semibold bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-1.5 sm:px-2 py-1.5 text-slate-700 dark:text-slate-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 max-w-[92px] sm:max-w-none">
               <option value="Suami">👨 Aslam (Suami)</option>
               <option value="Istri">👩 Anis (Istri)</option>
             </select>
           </div>
 
           <!-- Tool 3: Options / Settings Button -->
-          <button id="btnOpenOptionsScreen" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center justify-center shadow-xs" title="Menu Opsi & Pengaturan">
+          <button id="btnOpenOptionsScreen" class="p-1.5 sm:p-2 rounded-xl text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center justify-center shadow-xs" title="Menu Opsi & Pengaturan">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
           </button>
 
@@ -189,7 +194,7 @@
       <!-- ========================================== -->
       <!-- DEDICATED SCREEN TOOLBAR (TABS TERPILAH)    -->
       <!-- ========================================== -->
-      <nav class="flex space-x-1.5 mt-2.5 border-t border-slate-100 dark:border-slate-800 pt-2 overflow-x-auto hide-scrollbar">
+      <nav class="hidden sm:flex space-x-1.5 mt-2.5 border-t border-slate-100 dark:border-slate-800 pt-2 overflow-x-auto hide-scrollbar">
         <button data-screen="screen-dashboard" class="screen-tool-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-orange-600 text-white shadow-xs transition-all flex items-center gap-1.5 whitespace-nowrap">
           <span>🏠</span>
           <span>Beranda</span>
@@ -1140,52 +1145,79 @@
                 <button type="button" id="btnCopySupabaseSQL" class="text-emerald-600 dark:text-emerald-400 font-semibold hover:underline text-[11px]">Salin SQL</button>
               </div>
               <p class="text-[10px] text-slate-400 mb-2">Jalankan skrip ini di menu SQL Editor pada dashboard Supabase Anda.</p>
-              <pre id="codeSupabaseSQL" class="bg-slate-900 text-slate-200 p-2.5 rounded-xl text-[10px] font-mono overflow-x-auto max-h-36 hide-scrollbar select-all">
--- 1. Buat Tabel Pockets (Kantong Rekening)
+              <pre id="codeSupabaseSQL" class="bg-slate-900 text-slate-200 p-2.5 rounded-xl text-[10px] font-mono overflow-x-auto max-h-44 hide-scrollbar select-all">-- ============================================================
+-- FAMILYBANK HUB - SKEMA DATABASE SUPABASE V2 (PROPER & CLEAN)
+-- ============================================================
+
+-- 1. Tabel Pockets (Kantong Rekening Mandiri)
 create table if not exists pockets (
   id text primary key,
   name text not null,
-  type text not null,
-  balance bigint default 0,
-  icon text,
-  budget bigint default 0,
-  "desc" text
+  type text not null check (type in ('Bersama', 'Tabungan', 'Pribadi')),
+  balance bigint not null default 0,
+  icon text default '💰',
+  budget bigint not null default 0,
+  "desc" text default '',
+  created_at timestamptz default timezone('utc'::text, now()),
+  updated_at timestamptz default timezone('utc'::text, now())
 );
 
--- 2. Buat Tabel Goals (Target Impian)
+-- 2. Tabel Goals (Target Impian / Wishlist)
 create table if not exists goals (
   id text primary key,
   title text not null,
-  target bigint default 0,
-  current bigint default 0,
+  target bigint not null default 0,
+  current bigint not null default 0,
   pocket_id text,
-  tag text
+  tag text default 'Prioritas',
+  created_at timestamptz default timezone('utc'::text, now()),
+  updated_at timestamptz default timezone('utc'::text, now())
 );
 
--- 3. Buat Tabel Transactions (Mutasi Kas)
+-- 3. Tabel Transactions (Mutasi Kas + Tanggal ISO Presisi)
 create table if not exists transactions (
   id text primary key,
   date text not null,
-  type text not null,
+  iso_date date,
+  type text not null check (type in ('Pengeluaran', 'Pemasukan', 'Transfer')),
   category text,
-  amount bigint not null,
+  amount bigint not null check (amount >= 0),
   pocket text not null,
   "user" text not null,
-  notes text,
-  created_at timestamp with time zone default timezone('utc'::text, now())
+  notes text default '',
+  created_at timestamptz default timezone('utc'::text, now())
 );
 
--- 4. Aktifkan Fitur Realtime Antar HP
-alter publication supabase_realtime add table pockets;
-alter publication supabase_realtime add table goals;
-alter publication supabase_realtime add table transactions;
+-- Index agar pencarian & filter kalender cepat
+create index if not exists idx_trx_iso_date on transactions (iso_date desc);
+create index if not exists idx_trx_created_at on transactions (created_at desc);
 
--- 5. Kebijakan Akses Publik Keluarga
+-- 4. Aktifkan Realtime Antar HP & PC (Aman dijalankan ulang)
+do $$
+begin
+  if not exists (select 1 from pg_publication_tables where pubname = 'supabase_realtime' and tablename = 'pockets') then
+    alter publication supabase_realtime add table pockets;
+  end if;
+  if not exists (select 1 from pg_publication_tables where pubname = 'supabase_realtime' and tablename = 'goals') then
+    alter publication supabase_realtime add table goals;
+  end if;
+  if not exists (select 1 from pg_publication_tables where pubname = 'supabase_realtime' and tablename = 'transactions') then
+    alter publication supabase_realtime add table transactions;
+  end if;
+end $$;
+
+-- 5. Kebijakan Akses Keluarga (RLS Idempotent)
 alter table pockets enable row level security;
 alter table goals enable row level security;
 alter table transactions enable row level security;
+
+drop policy if exists "Akses Keluarga Pockets" on pockets;
 create policy "Akses Keluarga Pockets" on pockets for all using (true) with check (true);
+
+drop policy if exists "Akses Keluarga Goals" on goals;
 create policy "Akses Keluarga Goals" on goals for all using (true) with check (true);
+
+drop policy if exists "Akses Keluarga Trx" on transactions;
 create policy "Akses Keluarga Trx" on transactions for all using (true) with check (true);</pre>
             </div>
           </div>
@@ -1391,8 +1423,36 @@ create policy "Akses Keluarga Trx" on transactions for all using (true) with che
     </div>
   </div>
 
+    <!-- ========================================== -->
+  <!-- MOBILE BOTTOM NAVIGATION BAR (ANDROID/IOS) -->
+  <!-- ========================================== -->
+  <nav id="mobileBottomNav" class="sm:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 px-2 py-1.5 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
+    <div class="grid grid-cols-5 items-center max-w-md mx-auto">
+      <button type="button" data-screen="screen-dashboard" class="mobile-nav-btn flex flex-col items-center justify-center py-1 rounded-xl text-orange-600 dark:text-orange-400 font-bold transition-colors">
+        <span class="text-lg leading-none">🏠</span>
+        <span class="text-[10px] mt-1">Beranda</span>
+      </button>
+      <button type="button" data-screen="screen-pockets" class="mobile-nav-btn flex flex-col items-center justify-center py-1 rounded-xl text-slate-500 dark:text-slate-400 font-medium transition-colors">
+        <span class="text-lg leading-none">👛</span>
+        <span class="text-[10px] mt-1">Kantong</span>
+      </button>
+      <button type="button" data-screen="screen-input" class="mobile-nav-btn flex flex-col items-center justify-center -mt-5">
+        <span class="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-500/35 flex items-center justify-center text-xl font-bold border-4 border-slate-100 dark:border-slate-950 active:scale-95 transition-transform">➕</span>
+        <span class="text-[10px] font-bold text-orange-600 dark:text-orange-400 mt-0.5">Catat</span>
+      </button>
+      <button type="button" data-screen="screen-history" class="mobile-nav-btn flex flex-col items-center justify-center py-1 rounded-xl text-slate-500 dark:text-slate-400 font-medium transition-colors">
+        <span class="text-lg leading-none">📋</span>
+        <span class="text-[10px] mt-1">Riwayat</span>
+      </button>
+      <button type="button" data-screen="screen-goals" class="mobile-nav-btn flex flex-col items-center justify-center py-1 rounded-xl text-slate-500 dark:text-slate-400 font-medium transition-colors">
+        <span class="text-lg leading-none">🎯</span>
+        <span class="text-[10px] mt-1">Impian</span>
+      </button>
+    </div>
+  </nav>
+
   <!-- TOAST NOTIFICATION -->
-  <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs px-4 py-2.5 rounded-xl shadow-lg flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-200 pointer-events-none">
+  <div id="toast" class="fixed bottom-20 sm:bottom-5 right-4 sm:right-5 z-50 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs px-4 py-2.5 rounded-xl shadow-lg flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-200 pointer-events-none">
     <span id="toastIcon">✅</span>
     <span id="toastMessage">Berhasil!</span>
   </div>
@@ -1526,12 +1586,23 @@ create policy "Akses Keluarga Trx" on transactions for all using (true) with che
         activePane.classList.remove('hidden');
       }
 
-      // Update button styling
+      // Update desktop button styling
       screenButtons.forEach(btn => {
         if (btn.getAttribute('data-screen') === targetScreenId) {
           btn.className = "screen-tool-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-orange-600 text-white shadow-xs transition-all flex items-center gap-1.5 whitespace-nowrap";
         } else {
           btn.className = "screen-tool-btn px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all flex items-center gap-1.5 whitespace-nowrap";
+        }
+      });
+
+      // Update mobile bottom navigation styling
+      document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+        const s = btn.getAttribute('data-screen');
+        if (s === 'screen-input') return; // Keep center FAB styled
+        if (s === targetScreenId) {
+          btn.className = "mobile-nav-btn flex flex-col items-center justify-center py-1 rounded-xl text-orange-600 dark:text-orange-400 font-bold transition-colors";
+        } else {
+          btn.className = "mobile-nav-btn flex flex-col items-center justify-center py-1 rounded-xl text-slate-500 dark:text-slate-400 font-medium transition-colors";
         }
       });
 
@@ -1566,6 +1637,22 @@ create policy "Akses Keluarga Trx" on transactions for all using (true) with che
         switchScreen(target);
       });
     });
+
+    document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-screen');
+        if (target === 'screen-input') {
+          openInputScreen('Pengeluaran');
+        } else {
+          switchScreen(target);
+        }
+      });
+    });
+
+    const btnMobileOpenSheets = document.getElementById('btnMobileOpenSheets');
+    if (btnMobileOpenSheets) {
+      btnMobileOpenSheets.addEventListener('click', () => switchScreen('screen-sheets'));
+    }
 
     // In-Dashboard Screen Jump Links
     document.getElementById('btnGotoPockets').addEventListener('click', () => switchScreen('screen-pockets'));
@@ -1945,6 +2032,13 @@ create policy "Akses Keluarga Trx" on transactions for all using (true) with che
       state.transactions.splice(index, 1);
       saveState();
       renderAll();
+
+      if (isCloudConnected && supabaseClient) {
+        supabaseClient.from('transactions').delete().eq('id', trx.id).then();
+        if (pocket) {
+          supabaseClient.from('pockets').update({ balance: pocket.balance }).eq('id', pocket.id).then();
+        }
+      }
       showToast("Transaksi berhasil dihapus");
     }
 
@@ -2096,12 +2190,13 @@ create policy "Akses Keluarga Trx" on transactions for all using (true) with che
       saveState();
       renderAll();
 
-      // Cloud Push if Supabase connected (send exact schema columns)
+      // Cloud Push if Supabase connected (send exact v2 schema columns)
       if (isCloudConnected && supabaseClient) {
         const t0 = state.transactions[0];
         const supaPayload = {
           id: t0.id,
           date: t0.date,
+          iso_date: t0.isoDate || null,
           type: t0.type,
           category: t0.category,
           amount: t0.amount,
@@ -2116,6 +2211,10 @@ create policy "Akses Keluarga Trx" on transactions for all using (true) with che
         if (currentTrxType === "Pindah Pos" && destName) {
           const destP = state.pockets.find(p => p.name === destName);
           if (destP) supabaseClient.from('pockets').update({ balance: destP.balance }).eq('id', destP.id).then();
+          if (destName === "Dana Darurat") {
+            const g1 = state.goals.find(g => g.id === "g1");
+            if (g1) supabaseClient.from('goals').update({ current: g1.current }).eq('id', g1.id).then();
+          }
         }
       }
 
@@ -2145,6 +2244,16 @@ create policy "Akses Keluarga Trx" on transactions for all using (true) with che
       state.transactions = [];
       saveState();
       renderAll();
+
+      if (isCloudConnected && supabaseClient) {
+        supabaseClient.from('transactions').delete().neq('id', '').then();
+        state.pockets.forEach(p => {
+          supabaseClient.from('pockets').update({ balance: 0, budget: 0 }).eq('id', p.id).then();
+        });
+        state.goals.forEach(g => {
+          supabaseClient.from('goals').update({ current: 0, target: 0 }).eq('id', g.id).then();
+        });
+      }
       showToast("Semua saldo & riwayat berhasil direset ke Rp 0!");
     }
 
@@ -2688,40 +2797,58 @@ create policy "Akses Keluarga Trx" on transactions for all using (true) with che
         localStorage.setItem('family_supabase_url', url);
         localStorage.setItem('family_supabase_key', key);
 
+        const mapGoalToDb = g => ({
+          id: g.id, title: g.title, target: g.target || 0, current: g.current || 0,
+          pocket_id: g.pocketId || g.pocket_id || null, tag: g.tag || 'Prioritas'
+        });
+        const mapGoalFromDb = g => ({
+          id: g.id, title: g.title, target: Number(g.target) || 0, current: Number(g.current) || 0,
+          pocketId: g.pocket_id || g.pocketId || 'p3', tag: g.tag || 'Prioritas'
+        });
+        const mapTrxFromDb = t => ({
+          ...t, amount: Number(t.amount) || 0, isoDate: t.iso_date || t.isoDate || ''
+        });
+
         // If remote pockets table is empty, seed with initial state
         if (!pocketsData || pocketsData.length === 0) {
           await supabaseClient.from('pockets').insert(state.pockets);
-          await supabaseClient.from('goals').insert(state.goals);
+          await supabaseClient.from('goals').insert(state.goals.map(mapGoalToDb));
         } else {
           // Sync state from remote
-          state.pockets = pocketsData;
+          state.pockets = pocketsData.map(p => ({ ...p, balance: Number(p.balance) || 0, budget: Number(p.budget) || 0 }));
           const { data: goalsData } = await supabaseClient.from('goals').select('*');
-          if (goalsData && goalsData.length > 0) state.goals = goalsData;
+          if (goalsData && goalsData.length > 0) state.goals = goalsData.map(mapGoalFromDb);
           
           const { data: trxData } = await supabaseClient.from('transactions').select('*').order('created_at', { ascending: false });
-          if (trxData) state.transactions = trxData;
+          if (trxData) state.transactions = trxData.map(mapTrxFromDb);
         }
 
         saveState();
         renderAll();
         showToast("Terhubung ke Supabase! Sinkronisasi antar HP aktif.");
 
-        // Subscribe to Realtime Changes
+        // Subscribe to Realtime Changes (transactions, pockets, goals)
         supabaseClient.channel('family_realtime_channel')
           .on('postgres_changes', { event: '*', schema: 'public', table: 'transactions' }, async () => {
             const { data } = await supabaseClient.from('transactions').select('*').order('created_at', { ascending: false });
-            if (data) state.transactions = data;
+            if (data) state.transactions = data.map(mapTrxFromDb);
             const { data: pData } = await supabaseClient.from('pockets').select('*');
-            if (pData) state.pockets = pData;
+            if (pData) state.pockets = pData.map(p => ({ ...p, balance: Number(p.balance) || 0, budget: Number(p.budget) || 0 }));
             const { data: gData } = await supabaseClient.from('goals').select('*');
-            if (gData) state.goals = gData;
+            if (gData) state.goals = gData.map(mapGoalFromDb);
             saveState();
             renderAll();
             showToast("Data kas ter-update real-time dari cloud!");
           })
           .on('postgres_changes', { event: '*', schema: 'public', table: 'pockets' }, async () => {
             const { data: pData } = await supabaseClient.from('pockets').select('*');
-            if (pData) state.pockets = pData;
+            if (pData) state.pockets = pData.map(p => ({ ...p, balance: Number(p.balance) || 0, budget: Number(p.budget) || 0 }));
+            saveState();
+            renderAll();
+          })
+          .on('postgres_changes', { event: '*', schema: 'public', table: 'goals' }, async () => {
+            const { data: gData } = await supabaseClient.from('goals').select('*');
+            if (gData) state.goals = gData.map(mapGoalFromDb);
             saveState();
             renderAll();
           })
